@@ -2,10 +2,15 @@ from sentence_transformers import SentenceTransformer
 import faiss, numpy as np
 import os
 
+# Initialize the model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Path to your documents folder
-documents_folder = r'C:\Users\AKASH GHOSAL\Desktop\rag_project\documents'
+# Use a relative path to the 'documents' folder
+documents_folder = os.path.join(os.path.dirname(__file__), 'documents')
+
+# Check if the folder exists
+if not os.path.exists(documents_folder):
+    raise FileNotFoundError(f"The documents folder was not found: {documents_folder}")
 
 # Read only .txt files from the folder
 docs = []
