@@ -23,3 +23,5 @@ if query:
 
     elif route == "dictionary":
         st.write("📖 This is a dictionary lookup task (you can call an API like Owlbot).")
+
+
