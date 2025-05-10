@@ -1,7 +1,10 @@
 from dotenv import load_dotenv
 import os
-import openai
+import openai  # Use this instead of 'OpenAI'
+
 load_dotenv()
+
+# Load environment variables from .env file
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 def generate_answer(query, context):
@@ -9,9 +12,12 @@ def generate_answer(query, context):
 Context: {context}
 Question: {query}
 Answer:"""
+
+    # Call the OpenAI ChatCompletion API using the openai module
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo", messages=[{"role": "user", "content": prompt}]
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}]
     )
+
+    # Extract and return the answer from the response
     return response['choices'][0]['message']['content']
-
-

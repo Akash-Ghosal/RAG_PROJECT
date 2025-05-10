@@ -4,18 +4,18 @@ import os
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# Path to your documents folder
+# Specify the path to your documents folder
 documents_folder = r'C:\Users\AKASH GHOSAL\Desktop\rag_project\documents'
 
-# Read only .txt files from the folder
+# Get a list of only .txt files in the documents folder and read them
 docs = []
 for f in os.listdir(documents_folder):
     file_path = os.path.join(documents_folder, f)
-    if os.path.isfile(file_path) and f.lower().endswith('.txt'):
+    if os.path.isfile(file_path) and f.lower().endswith('.txt'):  # Only process .txt files
         with open(file_path, 'r', encoding='utf-8') as file:
             docs.append(file.read())
 
-# Create FAISS index
+# Proceed with document embeddings if there are documents
 if docs:
     doc_embeddings = model.encode(docs)
     dimension = doc_embeddings.shape[1]
