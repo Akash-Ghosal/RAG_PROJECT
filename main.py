@@ -1,5 +1,5 @@
 import streamlit as st
-from enbeddings import get_top_k
+from embeddings import get_top_k
 from utils import generate_answer
 from agents import agent_router
 st.write("✅ App is running!")
